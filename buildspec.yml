@@ -5,9 +5,7 @@ phases:
     commands:
       - echo Entered the install phase...
       - docker-compose build
-      - docker-compose pull
-      - docker pull 403191521364.dkr.ecr.us-east-1.amazonaws.com/doc:latest
-      - chmod 755 bin/*
+
 
   build:
     commands:
