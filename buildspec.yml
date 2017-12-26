@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Entered the install phase...
+      - docker-compose build
+      - docker-compose pull
+      - docker pull 403191521364.dkr.ecr.us-east-1.amazonaws.com/doc:latest
+      - chmod 755 bin/*
+
+  build:
+    commands:
+      - echo Entered the build phase
+      - docker-compose run --rm test
+      - docker-compose stop
+      - docker-compose rm -vf
+      - docker-compose run --rm -w /go/src/github.com/quorumcontrol/inhouse integration bin/_integration.sh
+      - bin/release.sh
